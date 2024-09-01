@@ -27,7 +27,7 @@ export const AboutSection = () => {
           <li>Back-end: Node.js com TypeScript, Fastify, PostgreSQL.</li>
           <li>Aplicações móveis: Desenvolvimento em React Native com foco em usabilidade e integração com APIs.</li>
         </ul>
-        <SocialMediaLinkAlt href="../assets/Currilo_Dev.pdf" icon={FaFileAlt}>
+        <SocialMediaLinkAlt href="assets/certificados/Currilo_Dev.pdf" icon={FaFileAlt}>
           <span className="max550:text-[15px]">Download CV</span>
         </SocialMediaLinkAlt>
       </div>
