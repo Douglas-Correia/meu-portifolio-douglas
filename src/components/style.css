@@ -62,9 +62,9 @@
 }
 
 .anim-left {
-  animation: anim-left 0.8s forwards;
+  animation: anim-left 0.5s forwards;
 }
 
 .anim-right {
-  animation: anim-right 0.8s forwards;
+  animation: anim-right 0.5s forwards;
 }

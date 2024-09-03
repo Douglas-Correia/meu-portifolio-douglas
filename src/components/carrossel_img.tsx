@@ -37,7 +37,7 @@ export const CarrosellImage = () => {
     return (
         <div className="absolute top-0 left-0 w-full h-screen bg-zinc-800/80 flex items-center justify-center z-50">
             <section className="w-full h-full flex items-center px-20">
-                <BiChevronLeft size={100} color="white" onClick={previousImage} />
+                <BiChevronLeft size={100} color="white" onClick={previousImage} cursor="pointer" />
                 <div className="flex items-center justify-center carousel-container">
                     <img
                         src={`assets/img/LGVC/usuario/usuario-${imageLeft}.png`}
@@ -55,7 +55,7 @@ export const CarrosellImage = () => {
                         className={`w-[600px] h-[300px] object-contain image-right shadow-md rounded-lg ${animating ? 'anim-right' : ''}`}
                     />
                 </div>
-                <BiChevronRight size={100} color="white" onClick={nextImage} />
+                <BiChevronRight size={100} color="white" onClick={nextImage} cursor="pointer" />
             </section>
         </div>
     );
