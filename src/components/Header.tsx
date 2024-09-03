@@ -11,7 +11,6 @@ export const Header = () => {
          <NavLink href="sobre">Sobre mim</NavLink>
          <NavLink href="tecnologias">Tecnologias</NavLink>
          <NavLink href="servicos">Serviços</NavLink>
-         <NavLink href="projetos">Projetos</NavLink>
          <NavLink href="certificados">Certificados</NavLink>
          <NavLink href="contato">Contato</NavLink>
       </nav>

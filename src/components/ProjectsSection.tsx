@@ -3,18 +3,25 @@
 import { arrProjects } from "./arrProjects";
 import { Card, CardProps } from "./Card";
 import { useEffect, useState } from "react";
+import { CarrosellImage } from "./carrossel_img";
 
 export const ProjectsSection = () => {
   const [repositories, setRepositories] = useState<CardProps[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showModalCarrossel, setShowModalCarrossel] = useState(true);
 
   useEffect(() => {
     setRepositories(arrProjects);
   }, []);
 
+  const handleShowCarrossel = (param: boolean) => {
+    setShowModalCarrossel(param);
+  }
+
   return (
     <>
-      <section id="servicos" className="w-full min-h-screen flex flex-col justify-center items-center pt-36 pb-20 px-4" data-aos="zoom-in-up">
+      <section id="servicos" className="relative w-full min-h-screen flex flex-col justify-center items-center pt-36 pb-20 px-4" data-aos="zoom-in-up">
+        {showModalCarrossel && <CarrosellImage />}
         <h2 className="text-title font-semibold text-primary-blue tracking-[2px] text-center pb-12 max400:text-[2.5rem]">Serviços prestado para Clientes</h2>
         <div className="flex items-center justify-center gap-10 flex-wrap">
           {!loading && (
@@ -32,14 +39,11 @@ export const ProjectsSection = () => {
                 description={r.description}
                 html_url={r.html_url}
                 languages={r.languages}
+                handleShowCarrossel={handleShowCarrossel}
               />
             )))
             : null}
         </div>
-      </section>
-
-      <section id="projetos" className="w-full min-h-screen flex flex-col justify-center items-center pt-36 pb-20 px-4" data-aos="zoom-in-up">
-
       </section>
 
       <section id="certificados" className="w-full min-h-screen flex flex-col justify-center items-center pt-36 pb-20 px-4" data-aos="zoom-in-up">

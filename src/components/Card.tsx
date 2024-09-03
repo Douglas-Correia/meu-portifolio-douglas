@@ -9,13 +9,22 @@ export interface CardProps {
   html_url: string;
   languages?: string[];
   certificado?: boolean;
+  handleShowCarrossel?: (param: boolean) => void;
 }
-export const Card = ({ name, description, html_url, languages, certificado }: CardProps) => {
+export const Card = ({ name, description, html_url, languages, certificado, handleShowCarrossel }: CardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div className={`flex flex-col items-center cursor-pointer ${isHovered ? 'anim-card' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}>
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => {
+        if (!handleShowCarrossel) {
+          return;
+        } else {
+          handleShowCarrossel(true);
+        }
+      }}
+    >
       <div className="bg-primary-blue w-[340px] rounded-[8px] flex flex-col items-center justify-between p-5 text-center shadow-md shadow-light-blue group-hover:animate-card-move-anim transition-transform ease-in-out duration-500">
         <h3 className="font-semibold text-light-coral">{name}</h3>
         <p className="text-med-gray">{description}</p>
