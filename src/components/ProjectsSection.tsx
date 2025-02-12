@@ -28,7 +28,7 @@ export const ProjectsSection = () => {
                 key={r.name}
                 name={r.name}
                 description={r.description}
-                html_url={r.html_url}
+                html_url={"https://new-up-technologies.vercel.app/#projetos"}
                 languages={r.languages}
               />
             )))

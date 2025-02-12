@@ -38,7 +38,7 @@ export const Card = ({
         <h3 className="font-semibold text-light-coral">{name}</h3>
         <p className="text-med-gray">{description}</p>
         <div className="flex items-center mt-4">
-          <a href={"https://new-up-technologies.vercel.app/"} target="_blank" rel="noreferrer noopener" className="flex items-center gap-x-3 p-1 rounded-[6px] hover:bg-light-coral hover:text-primary-blue transition-all ease-in-out duration-500 text-med-gray">
+          <a href={html_url} target="_blank" rel="noreferrer noopener" className="flex items-center gap-x-3 p-1 rounded-[6px] hover:bg-light-coral hover:text-primary-blue transition-all ease-in-out duration-500 text-med-gray">
             {certificado ? 'Exibir certificado' : 'Acessar projeto'}: {certificado ? <FaAward className="w-8 h-8 cursor-pointer rounded-[4px]" /> : <FcSelfServiceKiosk className="w-8 h-8 cursor-pointer rounded-[4px]" />}
           </a>
         </div>
