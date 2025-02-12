@@ -2,60 +2,87 @@ import { useState } from "react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import './style.css';
 
-export const CarrosellImage = () => {
+export const CarrosellImage = ({handleShowCarrossel}: {handleShowCarrossel: (param: boolean) => void}) => {
     const totalImages = 30;
 
-    const [imageLeft, setImageLeft] = useState(1);
-    const [imageCenter, setImageCenter] = useState(2);
-    const [imageRight, setImageRight] = useState(3);
+    const [imageCenter, setImageCenter] = useState(1);
     const [animating, setAnimating] = useState(false);
 
     const nextImage = () => {
         if (animating) return;
 
         setAnimating(true);
+        setImageCenter((prev) => (prev % totalImages) + 1);
+
+        const image = document.getElementById('image-carrossel');
+        if (image) {
+            image.classList.remove('anim-image-left'); // Remove a classe de animação da esquerda, se estiver aplicada
+            image.classList.add('anim-image-right');
+        }
+
         setTimeout(() => {
-            setImageLeft((prev) => (prev % totalImages) + 1);
-            setImageCenter((prev) => (prev % totalImages) + 1);
-            setImageRight((prev) => (prev % totalImages) + 1);
+            if (image) {
+                image.classList.remove('anim-image-right');
+            }
             setAnimating(false);
-        }, 800);
+        }, 200); // Ensure this matches the animation duration
     };
 
     const previousImage = () => {
         if (animating) return;
 
         setAnimating(true);
+        setImageCenter((prev) => (prev - 2 + totalImages) % totalImages + 1);
+
+        const image = document.getElementById('image-carrossel');
+        if (image) {
+            image.classList.remove('anim-image-right'); // Remove a classe de animação da direita, se estiver aplicada
+            image.classList.add('anim-image-left');
+        }
+
         setTimeout(() => {
-            setImageLeft((prev) => (prev - 2 + totalImages) % totalImages + 1);
-            setImageCenter((prev) => (prev - 2 + totalImages) % totalImages + 1);
-            setImageRight((prev) => (prev - 2 + totalImages) % totalImages + 1);
+            if (image) {
+                image.classList.remove('anim-image-left');
+            }
             setAnimating(false);
-        }, 800);
+        }, 200); // Ensure this matches the animation duration
     };
 
     return (
-        <div className="absolute top-0 left-0 w-full h-screen bg-zinc-800/80 flex items-center justify-center z-50">
+        <div 
+        className="absolute top-0 left-0 w-full h-screen bg-zinc-800/80 flex items-center justify-center z-50"
+        onClick={(e) => {
+            e.stopPropagation();
+            handleShowCarrossel(false);
+        }}
+        >
             <section className="w-full h-full flex items-center px-20">
-                <BiChevronLeft size={100} color="white" onClick={previousImage} cursor="pointer" />
-                <div className="flex items-center justify-center carousel-container">
-                    <img
-                        src={`assets/img/LGVC/usuario/usuario-${imageLeft}.png`}
-                        alt=""
-                        className={`w-[600px] h-[300px] object-contain image-left shadow-md rounded-lg ${animating ? 'anim-left' : ''}`}
-                    />
+                <BiChevronLeft
+                    size={100}
+                    color="white"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        previousImage()
+                    }}
+                    cursor="pointer"
+                />
+                <div className="flex items-center justify-center w-full no-scrollbar">
                     <img
                         src={`assets/img/LGVC/usuario/usuario-${imageCenter}.png`}
                         alt=""
-                        className="w-[800px] h-[400px] object-contain image-center shadow-md rounded-lg"
-                    />
-                    <img
-                        src={`assets/img/LGVC/usuario/usuario-${imageRight}.png`}
-                        alt=""
-                        className={`w-[600px] h-[300px] object-contain image-right shadow-md rounded-lg ${animating ? 'anim-right' : ''}`}
+                        className={`w-full max-w-[1200px] object-contain shadow-md rounded-lg`}
+                        id="image-carrossel"
                     />
                 </div>
-                <BiChevronRight size={100} color="white" onClick={nextImage} cursor="pointer" />
+                <BiChevronRight
+                    size={100}
+                    color="white"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        nextImage();
+                    }}
+                    cursor="pointer"
+                />
             </section>
         </div>
     );

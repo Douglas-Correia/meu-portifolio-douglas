@@ -1,5 +1,4 @@
 "use client";
-
 import { arrProjects } from "./arrProjects";
 import { Card, CardProps } from "./Card";
 import { useEffect, useState } from "react";
@@ -7,8 +6,7 @@ import { CarrosellImage } from "./carrossel_img";
 
 export const ProjectsSection = () => {
   const [repositories, setRepositories] = useState<CardProps[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [showModalCarrossel, setShowModalCarrossel] = useState(true);
+  const [showModalCarrossel, setShowModalCarrossel] = useState(false);
 
   useEffect(() => {
     setRepositories(arrProjects);
@@ -21,16 +19,9 @@ export const ProjectsSection = () => {
   return (
     <>
       <section id="servicos" className="relative w-full min-h-screen flex flex-col justify-center items-center pt-36 pb-20 px-4" data-aos="zoom-in-up">
-        {showModalCarrossel && <CarrosellImage />}
+        {showModalCarrossel && <CarrosellImage handleShowCarrossel={handleShowCarrossel} />}
         <h2 className="text-title font-semibold text-primary-blue tracking-[2px] text-center pb-12 max400:text-[2.5rem]">Serviços prestado para Clientes</h2>
         <div className="flex items-center justify-center gap-10 flex-wrap">
-          {!loading && (
-            <div className="flex flex-col items-center">
-              <div className="bg-primary-blue w-[300px] h-[300px] rounded-[8px] flex flex-col items-center justify-between p-5 text-center shadow-md shadow-light-blue">
-
-              </div>
-            </div>
-          )}
           {repositories && repositories.length > 0 ?
             (repositories.map((r) => (
               <Card
@@ -39,7 +30,6 @@ export const ProjectsSection = () => {
                 description={r.description}
                 html_url={r.html_url}
                 languages={r.languages}
-                handleShowCarrossel={handleShowCarrossel}
               />
             )))
             : null}

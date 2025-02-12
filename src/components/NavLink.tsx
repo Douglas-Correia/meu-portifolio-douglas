@@ -17,12 +17,12 @@ export const NavLink = ({ href, children }: NavLinkProps) => {
       offset: -270, // Ajuste o deslocamento conforme necessário
     });
   };
-
+  console.log(href)
   return (
     <a
       href={`#${href}`}
       onClick={handleScroll}
-      className="flex font-semibold text-link text-white hover:text-light-coral transition duration-700 ease-in-out no-underline focus:outline-none tracking-widest max715:text-[1rem] max375:text-[13px]"
+      className={`flex font-semibold text-link text-white hover:text-light-coral transition duration-700 ease-in-out no-underline focus:outline-none tracking-widest max715:text-[1rem] max375:text-[13px] max620:border-b max620:border-gray-200 max620:pb-1 max620:mb-1`}
     >
       {children}
     </a>
